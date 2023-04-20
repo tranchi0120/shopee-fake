@@ -1,0 +1,24 @@
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.no-scrollbar {
+  display: block;
+  cursor: pointer;
+  overflow: auto;
+  height: 3em;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  width: 3px;
+  height: 8px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb {
+  width: 3rem;
+  background: orange;
+  border-radius: 5px;
+}
