@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.scss";
 import { useDispatch } from "react-redux";
 import { setSidebarOn } from "../../feature/sidebarSlice";
 import { useSelector } from "react-redux";
 import {
   fetchCategories,
-  getAllCategories,
 } from "../../feature/categoriesSlice";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -13,9 +12,14 @@ import { getAllCarts } from "../../feature/cartSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-
-  const categories = useSelector(getAllCategories);
   const carts = useSelector(getAllCarts);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchTerm = (e) => {
+    e.preventDefault();
+    setSearchTerm(e.target.value);
+  }
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -37,26 +41,17 @@ const Navbar = () => {
           <div className="w-[900px] flex flex-col gap-5">
             <div className="flex items-center justify-between w-full bg-white p-1 ">
               <input
+                value={searchTerm}
                 type="text"
                 placeholder="search your preferred items here"
                 className="w-full text-black  border-none outline-none px-2"
+                onChange={(e) => handleSearchTerm(e)}
               />
-              <button className="w-[70px] h-[40px] bg-orange-600 ">
+              <Link to={`search/${searchTerm}`} className="flex items-center justify-center w-[70px] h-[40px] bg-orange-600 ">
                 <i className="ri-search-line"></i>
-              </button>
+              </Link>
             </div>
-            <ul className="no-scrollbar flex gap-12 text-#fafafafa  whitespace-nowrap overflow-x-auto scrollbar-hide">
-              {categories.map((category, index) => (
-                <li key={index}>
-                  <Link
-                    to={`category/${category}`}
-                    className="cursor-pointer hover:text-orange-300"
-                  >
-                    {category.replace("-", " ")}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+
           </div>
 
           <Link to="/cart">

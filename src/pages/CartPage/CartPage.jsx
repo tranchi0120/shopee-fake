@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { getAllCarts, setCartMessageOn } from "../../feature/cartSlice";
+import { getAllCarts } from "../../feature/cartSlice";
 import { shopping_cart } from "../../utils/images";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import CartModel from "../../components/CartModel/CartModel";
+
+
 
 const CartPage = () => {
   const carts = useSelector(getAllCarts);
@@ -33,7 +35,7 @@ const CartPage = () => {
 
   return (
     <div className="container">
-      <div className="cart">
+      <div className="carts">
         <CartModel carts={carts} handleRemoveCart={handleRemoveCart} />
       </div>
     </div>

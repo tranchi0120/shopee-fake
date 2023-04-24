@@ -4,6 +4,9 @@ import "remixicon/fonts/remixicon.css";
 import { useDispatch } from "react-redux";
 import { clearCart, removeCart, toggleCartQty } from "../../feature/cartSlice";
 
+import "./CartModel.scss"
+
+
 const CartModel = ({ carts }) => {
   console.log("cartsModel:", carts);
   const dispatch = useDispatch();
@@ -14,26 +17,25 @@ const CartModel = ({ carts }) => {
 
   return (
     <div className="container">
-      <div className="  ">
-        <div className="grid grid-cols-6 justify-center p-3   border-none shadow-md bg-white mt-4 ">
-          <div className="cart-cth">
-            <span className="cart-ctxt">S.N.</span>
-          </div>
-          <div className="cart-cth">
-            <span className="cart-ctxt">Product</span>
-          </div>
-          <div className="cart-cth">
-            <span className="cart-ctxt">Unit Price</span>
-          </div>
-          <div className="cart-cth">
-            <span className="cart-ctxt">Quantity</span>
-          </div>
-          <div className="cart-cth">
-            <span className="cart-ctxt">Total Price</span>
-          </div>
-          <div className="cart-cth">
-            <span className="cart-ctxt">Actions</span>
-          </div>
+
+      <div className="cart grid grid-cols-6 justify-center py-3 px-7   border-none shadow-md bg-white mt-4 ">
+        <div className="cart__title">
+          <span className="cart__content">S.N.</span>
+        </div>
+        <div className="cart__title">
+          <span className="cart__content -ml-[60px]">Product</span>
+        </div>
+        <div className="cart__title">
+          <span className="cart__content ml-8">Unit Price</span>
+        </div>
+        <div className="cart__title">
+          <span className="cart__content">Quantity</span>
+        </div>
+        <div className="cart__title">
+          <span className="cart__content">Total Price</span>
+        </div>
+        <div className="cart__title">
+          <span className="cart__content">Actions</span>
         </div>
       </div>
 
@@ -42,10 +44,10 @@ const CartModel = ({ carts }) => {
           <div key={index} className="grid grid-cols-6 py-3 px-7  border-none ">
             <h3>{index + 1}</h3>
             <div className="cart-ctd">
-              <span className="cart-ctxt">{item?.title}</span>
+              <span className="cart-ctxt -ml-[60px]">{item?.title}</span>
             </div>
             <div className="cart-ctd">
-              <span className="cart-ctxt">
+              <span className="cart-ctxt ml-8">
                 {formatPrice(item?.discountedPrice)}
               </span>
             </div>
@@ -77,7 +79,7 @@ const CartModel = ({ carts }) => {
           </div>
         ))}
 
-        <div className="flex gap-[200px] justify-end mt-4 p-6">
+        <div className="flex gap-[200px] justify-between mt-4 p-6">
           <div>
             Total Money: <span className="ml-2">{formatPrice(totalMoney)}</span>
           </div>

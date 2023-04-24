@@ -41,14 +41,13 @@ const Home = () => {
 
   const limitRef = useRef(limit);
 
-  const handleLoadProduct = useCallback(() => {
+  const handleSeemore = useCallback(() => {
     {
       limitRef.current += 10;
       // console.log(limitRef.current);
-
       dispatch(fectAllProduct(limitRef.current));
     }
-  });
+  }, []);
 
   return (
     <main>
@@ -73,7 +72,7 @@ const Home = () => {
           flex items-center justify-center mx-auto my-8
            text-white hover:text-orange-500 transition-all 
            hover:bg-gray-200"
-            onClick={() => handleLoadProduct()}
+            onClick={() => handleSeemore()}
           >
             See more
           </button>
@@ -86,11 +85,7 @@ const Home = () => {
             >
               <h3>{categories[0]}</h3>
             </div>
-            {productStatus === STATUS.LOADING ? (
-              <Loader />
-            ) : (
-              <ProductList products={catProductsOne} />
-            )}
+            <ProductList products={catProductsOne} />
           </div>
 
           <div className="categories-item">
@@ -101,11 +96,8 @@ const Home = () => {
             >
               <h3>{categories[1]}</h3>
             </div>
-            {productStatus === STATUS.LOADING ? (
-              <Loader />
-            ) : (
-              <ProductList products={catProductsTwo} />
-            )}
+            <ProductList products={catProductsTwo} />
+
           </div>
 
           <div className="categories-item">
@@ -116,11 +108,7 @@ const Home = () => {
             >
               <h3>{categories[2]}</h3>
             </div>
-            {productStatus === STATUS.LOADING ? (
-              <Loader />
-            ) : (
-              <ProductList products={catProductsThree} />
-            )}
+            <ProductList products={catProductsThree} />
           </div>
 
           <div className="categories-item">
@@ -131,11 +119,7 @@ const Home = () => {
             >
               <h3>{categories[3]}</h3>
             </div>
-            {productStatus === STATUS.LOADING ? (
-              <Loader />
-            ) : (
-              <ProductList products={catProductsFour} />
-            )}
+            <ProductList products={catProductsFour} />
           </div>
         </div>
       </div>
