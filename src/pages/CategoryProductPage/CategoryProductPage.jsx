@@ -33,7 +33,7 @@ const CategoryProductPage = () => {
       </div>
 
       {
-        categoryProductsStatus === STATUS.LOADING ? <Loader /> : <ProductList products={categoryProducts.products} />
+        categoryProductsStatus === STATUS.SUCCEEDED ? <Loader /> : <ProductList products={categoryProducts.products} />
       }
     </div>
   </div>;

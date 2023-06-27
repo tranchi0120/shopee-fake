@@ -1,11 +1,8 @@
 import React from "react";
 import Product from "../Product/Product";
-import Loader from "../Loader/Loader";
 
 const ProductList = ({ products }) => {
-
-
-
+  console.log({ products });
   return (
     <div className="product-lists grid grid-cols-4 gap-10  mt-10">
       {products.map(product => {

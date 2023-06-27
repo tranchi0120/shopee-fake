@@ -23,6 +23,7 @@ const ProductSinglePage = () => {
 
   const [quantity, setQuantity] = useState(1);
   const product = useSelector(getProductSingle);
+
   const productSingleStatus = useSelector(getProductSingleStatus);
   const cartMessageStatus = useSelector(getCartMessageStatus);
 
@@ -85,16 +86,18 @@ const ProductSinglePage = () => {
                 />
               </div>
               <div className="grid grid-cols-4 gap-5 mt-6 ">
-                <div className="border  shadow-5xl h-[100px] ">
-                  <img
-                    src={
-                      product ? (product.images ? product.images[1] : "") : ""
-                    }
-                    alt=""
-                    className="h-full object-cover w-full"
-                  />
-                </div>
-                <div className="border  shadow-5xl h-[100px] ">
+                {productSingleStatus === STATUS.SUCCEEDED
+                  ? product.images.map((img, idx) => (
+                    <div className="border  shadow-5xl h-[100px] " key={idx}>
+                      <img
+                        src={img}
+                        alt=""
+                        className="h-full object-cover w-full"
+                      />
+                    </div>
+                  ))
+                  : ""}
+                {/* <div className="border  shadow-5xl h-[100px] ">
                   <img
                     src={
                       product ? (product.images ? product.images[2] : "") : ""
@@ -115,12 +118,12 @@ const ProductSinglePage = () => {
                 <div className="border  shadow-5xl h-[100px] ">
                   <img
                     src={
-                      product ? (product.images ? product.images[4] : "") : ""
+                      product ? (product?.images ? product?.images[4] : "") : ""
                     }
                     alt=""
                     className="h-full object-cover w-full"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="flex-1">
@@ -197,13 +200,14 @@ const ProductSinglePage = () => {
                 </div>
               </div>
               <div className="mt-28 flex gap-5">
-                <button className="flex gap-4 justify-center items-center bg-orange-300 border border-orange-600 px-6 py-4 text-orange-600  hover:text-white ">
+                <button
+                  className="flex gap-4 justify-center items-center bg-orange-300 border border-orange-600 px-6 py-4 text-orange-600  hover:text-white "
+                  onClick={() => addToCartHandler(product)}
+                >
                   <span className=" ">
                     <i className="ri-shopping-cart-line"></i>
                   </span>
-                  <span className="" onClick={() => addToCartHandler(product)}>
-                    Add to cart
-                  </span>
+                  <span className="">Add to cart</span>
                 </button>
                 <button className=" text-orange-600 bg-white border border-orange-600 px-6 py-4 hover:bg-orange-600 hover:text-white">
                   Buy now

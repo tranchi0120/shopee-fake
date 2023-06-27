@@ -43,7 +43,7 @@ export const fetchCategories = createAsyncThunk(
     try {
       const res = await axios.get(`${BASE_URL}products/categories`);
       const data = await res.data;
-      return data;
+      return data
     } catch (error) {
       throw new Error("error request", error);
     }
@@ -55,7 +55,7 @@ export const fetProductCategory = createAsyncThunk(
   async (category) => {
     try {
       const res = await axios.get(`${BASE_URL}products/category/${category}`);
-      const data = res.data;
+      const data = await res.data;
       return data;
     } catch (error) {
       throw new Error("error request", error);
